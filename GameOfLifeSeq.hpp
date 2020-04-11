@@ -77,25 +77,28 @@ public:
     //an alive cell with less than 2 alive neighbours dies (becomes empty)
     //an alive cell with more than 3 alive neighbours dies (become empty)
 
-
-    void playVisual(uint16_t numIter){
+    void play(uint16_t numIter, bool printGrid = false){
         for (uint16_t iter = 0; iter < numIter; ++iter){
             for (int i = 1; i < n-1; ++i){
                 for (int j = 1; j < m-1; ++j ){
-                    int8_t sum = grid[i-1][j-1] + grid[i-1][j] + grid[i-1][j]
-                                + grid[i][j-1] + grid[i][j+1]
-                                + grid[i+1][j-1] + grid[i+1][j] + grid[i+1][j+1];
-                    if (sum <=  2){
+                    int8_t sum = grid[i-1][j-1] + grid[i-1][j] + grid[i-1][j+1]
+                                 + grid[i][j-1] + grid[i][j+1]
+                                 + grid[i+1][j-1] + grid[i+1][j] + grid[i+1][j+1];
+                    if(sum == 2){
+                        grid_tmp[i][j] = grid[i][j];
+                    }else if(sum == 3){
+                        grid_tmp[i][j] = true;
+                    }else{
                         grid_tmp[i][j] = false;
-                    }else if(sum == 2){
-                        grid_tmp[i][j] = false;
-                    };
+                    }
                 }
             }
+            grid.swap(grid_tmp);
+            if (printGrid)
+                printgrid();
         }
+
     }
-
-
 };
 
 
