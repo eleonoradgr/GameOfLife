@@ -6,7 +6,7 @@
 #include <random>
 #include <thread>
 #include <fstream>
-#include "../utils/utimer.hpp"
+#include "utils/utimer.hpp"
 
 
 typedef struct {

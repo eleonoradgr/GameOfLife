@@ -4,7 +4,7 @@
 #include <vector>
 #include <bitset>
 #include <random>
-#include "../utils/utimer.hpp"
+#include "utils/utimer.hpp"
 
 
 class GameOfLifeSeq {
