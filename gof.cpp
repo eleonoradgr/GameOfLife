@@ -5,21 +5,19 @@
 
 
 int main(int argc, char *argv[] ){
-    GameOfLifeSeq game(30000,6000);
-    //game.printgrid() ;
-    game.play(20, false);
-    //game.printgrid() ;
+    GameOfLifeSeq  game(30000,600);
+    game.play(30, false);
 
     std::cout << "Parallel Version" << std::endl;
 
-    GameOfLifePT game2(30000, 6000);
+    GameOfLifePT game2(30000, 600);
     //game2.printgrid() ;
-    game2.play(20, 40, false);
+    game2.play(30, false, 20);
     //game2.printgrid( std::string("output.txt"));
 
-    GameOfLifeOMP game3(30000, 6000);
+    GameOfLifeOMP game3(30000, 600);
     //game2.printgrid() ;
-    game3.play(20, 40, false);
+    game3.play(30, false,20);
     //game2.printgrid( std::string("output.txt"));
 
 
