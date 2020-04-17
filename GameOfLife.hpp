@@ -21,7 +21,7 @@ public:
     //an alive cell with less than 2 alive neighbours dies (becomes empty)
     //an alive cell with more than 3 alive neighbours dies (become empty)
 
-    virtual void play(uint16_t numIter, bool printGrid = false, uint8_t numw = 1) = 0;
+    virtual void play(uint16_t numIter, bool printGrid = false, uint16_t numw = 1) = 0;
 
 protected:
     uint32_t n;

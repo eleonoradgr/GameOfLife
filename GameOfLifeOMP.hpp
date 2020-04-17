@@ -18,14 +18,13 @@ public:
         //an alive cell with less than 2 alive neighbours dies (becomes empty)
         //an alive cell with more than 3 alive neighbours dies (become empty)
 
-        void play(uint16_t numIter, bool printGrid = false, uint8_t numw = 1);
+        void play(uint16_t numIter, bool printGrid = false, uint16_t numw = 1);
         
 };
 
 
-void GameOfLifeOMP::play(uint16_t numIter, bool printGrid , uint8_t numw) {
+void GameOfLifeOMP::play(uint16_t numIter, bool printGrid , uint16_t numw) {
 
-    utimer seq(std::to_string(numIter) + " iterations of parallel OMP Game of Life");
     nw = numw;
     uint32_t delta{(n - 2) / nw};
 

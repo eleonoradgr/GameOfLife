@@ -31,14 +31,13 @@ public:
     //an alive cell with less than 2 alive neighbours dies (becomes empty)
     //an alive cell with more than 3 alive neighbours dies (become empty)
 
-    void play(uint16_t numIter, bool printGrid = false, uint8_t numw = 1);
+    void play(uint16_t numIter, bool printGrid = false, uint16_t numw = 1);
 
 };
 
 
-void GameOfLifePTRange2::play(uint16_t numIter, bool printGrid, uint8_t numw) {
+void GameOfLifePTRange2::play(uint16_t numIter, bool printGrid, uint16_t numw) {
 
-    utimer seq(std::to_string(numIter) + " iterations of parallel Game of Life");
     nw = numw;
     std::vector<RANGE2> ranges(nw);
     uint32_t delta{(n - 2) / nw};
