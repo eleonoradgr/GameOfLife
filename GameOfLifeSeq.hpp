@@ -11,18 +11,19 @@
 class GameOfLifeSeq : public GameOfLife {
 public:
 
-    explicit GameOfLifeSeq(uint32_t n = 30, uint32_t m = 30, uint32_t seed = 1234, float den = 0.3) : GameOfLife{n, m, seed, den}{};
+    explicit GameOfLifeSeq(uint32_t n = 30, uint32_t m = 30, uint32_t seed = 1234, float den = 0.3) : GameOfLife{n, m,
+                                                                                                                 seed,
+                                                                                                                 den} {};
 
-    //an individual in a cell with 2 or  3 alive neighbours stays alive
-    //an empty cell with exactly 3 alive neighbours becomes populated by a new individual
-    //an alive cell with less than 2 alive neighbours dies (becomes empty)
-    //an alive cell with more than 3 alive neighbours dies (become empty)
 
     void play(uint16_t numIter, bool printGrid = false, uint16_t nw = 1);
 
 };
 
-void GameOfLifeSeq::play(uint16_t numIter, bool printGrid, uint16_t nw ) {
+// provides a trivial sequential implementation which scans all the cells of the grid through two nested for.
+// The computed value is stored in a new grid and then grids are swapped.
+
+void GameOfLifeSeq::play(uint16_t numIter, bool printGrid, uint16_t nw) {
 
     for (uint16_t iter = 0; iter < numIter; ++iter) {
         for (int i = 1; i < n - 1; ++i) {

@@ -12,37 +12,46 @@ int main(int argc, char *argv[]) {
      * - GameOfLifeOMPchunk where a parallel for pragma with static scheduling and fixed chunck
      *      is inserted before the for which scans all the element of the grid.*/
 
-    long time_tot = 0 ;
-    for (int i = 0; i < 20; ++i) {
-        GameOfLifeSeq game0(2000, 2000);
+    uint32_t n = 2000;
+    uint32_t m = 2000;
+    uint16_t iterations = 25;
+    uint16_t repetitions = 20;
+    uint32_t max_nw = 256;
+
+
+    long time_tot = 0;
+    for (int i = 0; i < repetitions; ++i) {
+        GameOfLifeSeq game0(n, m);
         utimer seq(std::to_string(i) + " sequential ", &time_tot);
-        game0.play(25, false);
+        game0.play(iterations, false);
     }
-    time_tot = time_tot/20;
-    std::cout << "2000,2000,seq,25,0,"<< time_tot << std::endl;
+    time_tot = time_tot / repetitions;
+    std::cout << n << "," << m << ",seq," << iterations << ",0," << time_tot << std::endl;
 
-    for (int nw = 1; nw <= 256; ++nw) {
-        long time_tot_omp = 0 ;
-        for (int i = 0; i < 20; ++i) {
-            GameOfLifeOMP game1(2000, 2000);
+    for (int nw = 1; nw <= max_nw; ++nw) {
+        long time_tot_omp = 0;
+        for (int i = 0; i < repetitions; ++i) {
+            GameOfLifeOMP game1(n, m);
             utimer omp(std::to_string(i) + " omp 1 ", &time_tot_omp);
-            game1.play(25, false, nw);
+            game1.play(iterations, false, nw);
         }
-        time_tot_omp = time_tot_omp/20;
-        float speedup =  float(time_tot) /time_tot_omp;
-        std::cout << "2000,2000,omp1,25," + std::to_string(nw) + ","<< time_tot_omp<< ","<< speedup << std::endl;
+        time_tot_omp = time_tot_omp / repetitions;
+        float speedup = float(time_tot) / time_tot_omp;
+        std::cout << n << "," << m << ",omp1," << iterations << "," + std::to_string(nw) + "," << time_tot_omp << ","
+                  << speedup << std::endl;
     }
 
-    for (int nw = 1; nw <= 256; ++nw) {
-        long time_tot_omp = 0 ;
-        for (int i = 0; i < 20; ++i) {
-            GameOfLifeOMPchunk game2(2000, 2000);
+    for (int nw = 1; nw <= max_nw; ++nw) {
+        long time_tot_omp = 0;
+        for (int i = 0; i < repetitions; ++i) {
+            GameOfLifeOMPchunk game2(n, m);
             utimer omp(std::to_string(i) + " omp 2 ", &time_tot_omp);
-            game2.play(25, false, nw);
+            game2.play(iterations, false, nw);
         }
-        time_tot_omp = time_tot_omp/20;
-        float speedup =  float(time_tot) /time_tot_omp;
-        std::cout << "2000,2000,omp2,25," + std::to_string(nw) + ","<< time_tot_omp<< ","<< speedup << std::endl;
+        time_tot_omp = time_tot_omp / repetitions;
+        float speedup = float(time_tot) / time_tot_omp;
+        std::cout << n << "," << m << ",omp2," << iterations << "," + std::to_string(nw) + "," << time_tot_omp << ","
+                  << speedup << std::endl;
     }
 }
 

@@ -8,7 +8,7 @@
 #include "utils/utimer.hpp"
 
 
-class GameOfLife{
+class GameOfLife {
 public:
     explicit GameOfLife(uint32_t n = 30, uint32_t m = 30, uint32_t seed = 1234, float den = 0.3);
 
@@ -34,8 +34,8 @@ protected:
 };
 
 GameOfLife::GameOfLife(uint32_t n, uint32_t m, uint32_t seed, float den) : n(n), m(m), seed(seed),
-                                                                                 density(den * 100), grid(n),
-                                                                                 grid_tmp(n) {
+                                                                           density(den * 100), grid(n),
+                                                                           grid_tmp(n) {
 
     for (int i = 0; i < n; ++i) {
         grid[i] = *new std::vector<bool>(m, false);
@@ -73,7 +73,6 @@ void GameOfLife::reset(uint32_t seed_new) {
 void GameOfLife::printgrid(const std::string filename) {
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
     /*if (filename != "") {
-
         std::ofstream out(filename);
         out.open(filename);
         std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
