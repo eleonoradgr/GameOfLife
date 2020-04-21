@@ -1,4 +1,7 @@
+<div align="center">
+
 # GameOfLife
+</div>
 
 To implement a parallel version of Game of Life I’ve realized an abstract class GameOfLife and five different concrete extensions that differ one each other for the implementation of the method play. \
 In particular:\
@@ -9,6 +12,8 @@ In particular:\
     • <b>GameOfLifeOMPChunk</b>, similar to GameOfLifeOMP but I have fixed the chunk size and the schedule is static. 
 
 
-Comparisons of Pthread implementation:
-
-As expected the GameOfLifePT has better time performance then GameOfLifePTfj.
+<div align="center">
+<b>Comparisons of Pthread implementation</b>
+</div>
+As expected the GameOfLifePT has better time performance then GameOfLifePTfj. /
+![PTcomparison]()
