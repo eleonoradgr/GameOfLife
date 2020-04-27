@@ -4,6 +4,7 @@
 #include "GameOfLifePT.hpp"
 #include "GameOfLifeOMP.hpp"
 #include "GameOfLifeOMPchunk.h"
+#include "GameOfLifePTvec.hpp"
 
 
 int main(int argc, char *argv[]) {
@@ -51,7 +52,7 @@ int main(int argc, char *argv[]) {
         game.printgrid();
 
 
-    GameOfLifePTfj game1(n, m, seed, den);
+    GameOfLifePT game1(n, m, seed, den);
     {
         utimer pt(" Parallel pthread execution");
         game1.play(iterations, print_grid, nw);
@@ -59,12 +60,20 @@ int main(int argc, char *argv[]) {
     if (print_res)
         game1.printgrid();
 
-    GameOfLifeOMP game2(n, m, seed, den);
+    GameOfLifePTvec game2(n, m, seed, den);
     {
-        utimer omp(" Paralel omp execution ");
+        utimer pt(" Parallel pthread vectorized execution");
         game2.play(iterations, print_grid, nw);
     }
     if (print_res)
         game2.printgrid();
+
+    GameOfLifeOMP game3(n, m, seed, den);
+    {
+        utimer omp(" Paralel omp execution ");
+        game3.play(iterations, print_grid, nw);
+    }
+    if (print_res)
+        game3.printgrid();
 
 }

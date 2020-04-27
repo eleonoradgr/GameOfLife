@@ -4,6 +4,9 @@
 #include <vector>
 #include <random>
 #include <omp.h>
+#include <iostream>
+#include <fstream>
+
 
 #include "utils/utimer.hpp"
 
@@ -12,7 +15,7 @@ class GameOfLife {
 public:
     explicit GameOfLife(uint32_t n = 30, uint32_t m = 30, uint32_t seed = 1234, float den = 0.3);
 
-    void printgrid(std::string filename = "");
+    void printgrid(const char *filename = "");
 
     void reset(uint32_t seed_new = 1234);
 
@@ -70,13 +73,13 @@ void GameOfLife::reset(uint32_t seed_new) {
     }
 }
 
-void GameOfLife::printgrid(const std::string filename) {
+void GameOfLife::printgrid(const char *filename) {
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-    /*if (filename != "") {
+    if (filename != "") {
         std::ofstream out(filename);
         out.open(filename);
         std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-    }*/
+    }
     for (int i = 0; i < m; ++i) {
         std::cout << "-";
     }
